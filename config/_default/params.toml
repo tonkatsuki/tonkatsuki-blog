@@ -56,7 +56,6 @@ layoutBackgroundBlur = true        # only used when layout equals background
 showDate = true
 showViews = false
 showLikes = false
-showComments = true
 showDateOnlyInArticle = false
 showDateUpdated = true
 showAuthor = true
@@ -161,3 +160,16 @@ websiteid = "123eda3e-d509-4e8f-a735-71d1685c5ce6"
 # bing = ""
 # pinterest = ""
 # yandex = ""
+
+
+[params.giscus]
+repo = "tonkatsuki/tonkatsuki-blog"
+repoID = "_kgDOM_JEXw"
+category = "Announcements"
+categoryID = "DIC_kwDOM_JEX84Cj8pk"
+mapping = "pathname"
+reactionsEnabled = "1"
+emitMetadata = "0"
+inputPosition = "bottom"
+theme = "dark"
+lang = "en"
