@@ -139,8 +139,8 @@ cardViewScreenWidth = false
 # domain = "llama.yoursite.com"
 
 [umamiAnalytics]
-# websiteid = "ABC12345"
-# domain = "llama.yoursite.com"
+websiteid = "123eda3e-d509-4e8f-a735-71d1685c5ce6"
+domain = "tonkatsuki.dev"
 # dataDomains = "yoursite.com,yoursite2.com"
 # enableTrackEvent = true
 
