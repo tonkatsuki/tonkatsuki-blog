@@ -165,7 +165,7 @@ websiteid = "123eda3e-d509-4e8f-a735-71d1685c5ce6"
 
 [params.giscus]
 repo = "tonkatsuki/tonkatsuki-blog"
-repoID = "_kgDOM_JEXw"
+repoID = "R_kgDOM_JEXw"
 category = "Giscus"
 categoryID = "DIC_kwDOM_JEX84Cj8pk"
 mapping = "pathname"
