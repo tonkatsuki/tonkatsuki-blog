@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 100" fill="#fff" stroke="#000">
   <!-- Define the styles for the node -->
   <symbol id="node" overflow="visible">
-    <use xlink:href="#C" stroke="none" fill="#000"/>
-    <use xlink:href="#D" stroke="none" fill="#000"/>
+    <use xlink:href="#C" stroke="none" fill="#02A2E8"/>
+    <use xlink:href="#D" stroke="none" fill="#02A2E8"/>
     <path d="M22.442 6.685l2.362 3.543-9.054 2.362 1.968-1.575L3.547 8.653 7.09 5.898 20.867 8.26l1.575-1.575zm12.596 8.66l-1.575-3.543 8.267-1.575-1.575 1.181 13.778 2.362-3.543 2.755-13.384-2.755-1.968 1.575zm-4.33-10.628l9.054-2.362v3.936L37.4 5.898l-4.33 3.543-4.33-.394 4.724-3.936-2.755-.394zm-3.937 14.171l-8.66 1.575-.394-3.936 2.362.394 4.724-3.936 4.33.787-5.117 4.33 2.755.787z" stroke="none"/>
   </symbol>
 
@@ -13,7 +13,7 @@
   </defs>
 
   <!-- Line connecting the nodes -->
-  <line id="line" x1="40" y1="30" x2="140" y2="60" stroke="grey" stroke-width="2" stroke-dasharray="100%" stroke-dashoffset="100%">
+  <line id="line" x1="40%" y1="36%" x2="60%" y2="50%" stroke="grey" stroke-width="2" stroke-dasharray="100%" stroke-dashoffset="100%">
     <!-- Animate the drawing of the line -->
     <animate attributeName="stroke-dashoffset" from="100%" to="0%" dur="3s" fill="freeze" />
     <!-- Animate blinking after line is drawn -->
@@ -23,6 +23,7 @@
   </line>
 
   <!-- Nodes (placed after the line to appear above it) -->
-  <use xlink:href="#node" x="20" y="20" />
-  <use xlink:href="#node" x="120" y="50" />
+  <use xlink:href="#node" x="120%" y="110%" transform="scale(0.3)" />
+  <use xlink:href="#node" x="190%" y="150%" transform="scale(0.3)" />
 </svg>
+
