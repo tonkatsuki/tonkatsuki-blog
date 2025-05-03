@@ -46,3 +46,6 @@ I hope one day macOS's default screenshot utility can reach what [shottr](http:/
 
 ![](/posts/macos-utils/shottr.png)
 
+## One last thing..
+
+I won't cover it here, but I highly recommend you check out [this](https://www.josean.com/posts/7-amazing-cli-tools) blog post on some additional CLI tools I also use. Josean Martinez also has a youtube covering it, to show you how it all looks realtime. Using fzf + bat + delta + eza is very useful. I don't personally use tldr and tf, but I'm sure they're great!
