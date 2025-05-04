@@ -4,7 +4,6 @@ date = 2025-05-03T00:00:10-05:00
 tags = ["networking"]
 featured_image = '/posts/ipv4-subnetting/feature.png'
 draft = false
-comments = true
 +++
 
 # Intro
