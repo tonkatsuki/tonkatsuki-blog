@@ -9,7 +9,7 @@ comments = true
 
 # Intro
 
-This blog post is dedicated to elaborating, and a bit of re-explanation, of something I read many years ago on TechExams.net. Unfortunately the post is gone now, but there is a re-upload on infosecinstitute.com. Link is [here](https://community.infosecinstitute.com/discussion/38772/subnetting-made-easy)!
+This blog post is dedicated to elaborating, and a bit of re-explanation, of something I read many years ago on TechExams.net. Unfortunately the post is gone now, but there is a re-upload on infosecinstitute.com. Link is [here](https://community.infosecinstitute.com/discussion/38772/subnetting-made-easy)! You can also view it on [archive.org](https://web.archive.org/web/20250321210521/https://community.infosecinstitute.com/discussion/38772/subnetting-made-easy) if the original link isn't working.    
 Traditional subnetting tutorials will explain network/host bits, etc. Although this is important to understand, it's not necessary to subnet quickly. This guide is solely to show you a way to subnet on the go, only needing some quick math.
 
 The reason I made this was although the above link is quite good, it doesn't explain a couple other quick hacks for figuring out information on networks.
