@@ -4,6 +4,7 @@ date = 2025-05-03T00:00:10-05:00
 tags = ["networking"]
 featured_image = '/posts/ipv4-subnetting/feature.png'
 draft = false
+comments = true
 +++
 
 # Intro
@@ -29,14 +30,17 @@ First, let's separate our IPv4 into boundaries.
 | 8 | 16 | 24 | 32 |
 
 
-Each octet corresponds to a number below, 8, 16, 24, and 32. It's no coincidence, if you've learned about subnetting you might've read about the binary behind it all. An IPv4 address is 32 bits. Remember a subnet is determined by how many **network** bits are set. 1 bit is 8 bytes, meaning when all the binary in the first octet, the first 8 bits are set to 1.
-
+Each octet corresponds to a number below, 8, 16, 24, and 32. It's no coincidence, if you've learned about subnetting you might've read about the binary behind it all. An IPv4 address is 32 bits. Remember a subnet is determined by how many **network** bits are set. 1 bit is 8 bytes, let's look at this below, so if you were to have your network bits set like this: 
 >11111111 00000000 00000000 00000000
 
-Would be a /8 network
+Would be a network that is x.x.x.x/8, or x.x.x.x 255.0.0.0
 
 That means all the zeroes above, well, they are your host bits!
-And inversely, if everything was set to 1's, you'd be left with a 32. There's no host bits left to subnet with, so the network identifier and the single usable IP is the only IP possible, so a 192.168.4.3/32 is solely that, one IP.
+And inversely, if everything was set to 1's, you'd be left with a /32 or 255.255.255.255 as the mask. There's no host bits left to subnet with, so the network identifier and the single usable IP is the only IP possible, so a 192.168.4.3/32 is solely that, one IP.
+
+One last thing you should remember before we dive in. Those boundaries above, 8, 16, 24, 32. They're convenient for another reason- if you see these, you don't need any special tricks to subnet. Let's say we have the IP **192.168.1.1**.
+
+If this was a /8, it would mean the last 3 octets are occupied with host information. If it was a /16, the last 2, and so forth.
 
 Now that we're through the explanation on these boundaries, let's do something useful:
 
@@ -60,17 +64,17 @@ Now let's stop for a second, we're working in the last boundary or octet of this
 
 >192.168.4.16/29
 
-192.168.4.10 is between 192.168.4.8/29 and 192.168.4.16/29, meaning we've found the **boundary** between our subnets. We now know that the only possible IP addresses in our subnet are 8, 9, 10, 11, 12, 13, 14, 15. But if you know a little IPv4, you know there's two things we need to remove... We want to find the usable IP's, but in IPv4, two addresses in a typical subnet shorter than a /31<sup>[a](#a)</sup> are special. One of them is our **network identifier** and one of them is our **broadcast**. Our network identifier is always the **first** address and our broadcast is always our **last** address. Meaning for 192.168.4.10/29:
+192.168.4.10 is between 192.168.4.8/29 and 192.168.4.16/29, meaning we've found the **boundary** between our subnets. We now know that the only possible IP addresses in our subnet are 8, 9, 10, 11, 12, 13, 14, 15. But if you know a little IPv4, you know there's two things we need to remove... We want to find the usable IP's, but in IPv4, two addresses in a typical subnet shorter<sup>[a](#a)</sup> than a /31<sup>[b](#b)</sup> are special. One of them is our **network identifier** and one of them is our **broadcast** address. Our network identifier is always the **first** address and our broadcast is always our **last** address. Meaning for 192.168.4.10/29:
 
-192.168.4.8 is our **network identifier**
+192.168.4.8 is our **network identifier**, aka the first address
 
-192.168.4.15 is our **broadcast address**
+192.168.4.15 is our **broadcast address**, aka the last address
 
 Therefore, to answer our first question, what is the usable IP address in the subnet 192.168.4.10/29?
 
 ### 192.168.4.9 - 192.168.4.14
 
-Now, if you read my link earlier, you probably found this very redundant. But what if I had some extra tips for you? They aren't explicitly explained in the blog post, but some quick understanding of the math we're using will get you there.
+Now, if you read my link earlier, you probably found this very redundant. But what if I had some extra tips for you? They aren't explicitly explained in the original post, but some quick understanding of the math we're using will get you there.
 
 ## 10.34.99.4/22
 
@@ -103,7 +107,7 @@ So wait, does that mean we only have 4 total IP's? Nope! Remember, we're working
 
 Wait. This might take a while, we have to reach 99 right? Counting 4 at a time seems a little silly. How can we find out the nearest when it's all the way up there, close that 100?
 
-Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well, 25 isn't very useful, is it? We're working in powers of 2, and there's no 2<sup>x</sup>  = 25 is there? However, we could quickly figure out that **100** is divisible by 4, meaning one of our subnets has to be 10.34.100.0/22. Minus 4 from 100, and you're at 96. We got our boundary!
+Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well, 25 isn't very useful, is it? We're working in powers of 2, and there's no 2<sup>x</sup>  = 25, is there? However, we could quickly figure out that **100** is divisible by 4, meaning one of our subnets has to be 10.34.100.0/22. Minus 4 from 100, and you're at 96. We got our boundary!
 
 >10.34.92.0/22
 
@@ -111,7 +115,7 @@ Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well
 
 >10.34.100.0/22
 
-But before we move on, I want to teach you a hack about this. Know how we're always doing that thing where we work in powers of 2? If you're not good at basic math or multiplication tables (I certainly stink at it!), you can hack your way through this. Just remember your **powers of 2** and you will have to do barely any math at all. Our subnets always need to align with powers of two, right?
+But before we move on, I want to teach you a hack about this. Know how we're always doing that thing where we work in powers of 2? If you're not good at basic math or multiplication tables (I certainly stink at it!), you can hack your way through this. Just remember your **powers of two** and you will have to do barely any math at all. Our subnets always need to align with powers of two, right?
 
 >2<sup>1</sup> = 2
 
@@ -125,7 +129,7 @@ And so forth. So we've basically got 2, 4, 8, 16, 32, 64, 128, 256. If we can re
 
 99 is close to that 128 from our 2<sup>7</sup> operation. We could count down by 4's from 128, or we could minus an even smaller power of two to get us closer. How about 32? That puts us right on 10.34.96.0/22! By remembering the powers of two, we need to barely think about division, multiplication, or exponents. Although it's good to know the math, remember, we want to subnet *quick*!
 
-Another great way, if you love tech like me, is also to just think about RAM sizes. RAM usually comes in 1GB, 2GB, 4GB, 8GB, and so forth. If you remember other ram sizes that aren't directly powers of 2, like 24GB, 96GB, etc, you'll be very quick on your feet.
+Another great way, if you love tech like me, is also to just think about RAM sizes. RAM usually comes in 1GB, 2GB, 4GB, 8GB, 64GB, 128GB, and so forth. If you remember other ram sizes that aren't directly powers of 2, like 24GB, 96GB, etc, you'll be very quick on your feet.
 
 Since we got that out of the way, let's figure out one last thing on this tangent, what's our IP range? We're working in 10.34.96.0/22, and the next boundary is 10.34.100.0/22, so...
 
@@ -197,6 +201,10 @@ Take out the first and last address:
 
 16 /30's fit in a /26
 
+# IPv6
+
+Notice how we were only working with IPv4. All of this holds true with IPv6, just remember, an IPv6 address is hexadecimal and not solely numerically defined. Additionally a /128 address in v6 is a single host IP, much like a /32. The smallest subnet you can make is a /64<sup>[c](#c)</sup>. All of the operations are pretty much the same, calculating total number of hosts, usable IP range, etc.
+
 # Final thoughts
 
 I hope you stuck with me on this to learn IP subnetting. Feel free to provide comments below via GitHub if you think this could be fixed up a little, or just anything you want to add!
@@ -204,5 +212,12 @@ I hope you stuck with me on this to learn IP subnetting. Feel free to provide co
 ## Notes
 
 ### a
+
+You may see people refer to prefixes (read: subnets or networks) as being long or short. A long prefix is one that is more defined, meaning more network bits are set. For instance, a /31 network would be a LONG prefix, and a /8 might be considered a short prefix. This is important because in routing, the longest (aka more specific) prefix is matched before a shorter (aka less specific) prefix.
+
+### b
 A /31 network has only two addresses. [RFC3021](https://datatracker.ietf.org/doc/html/rfc3021) provided a path for developers to use this mask, even though in typical IPv4 networking, the first address in a subnet is the identifier and not to be used, and the last is a broadcast, a /31 provides a way to provide a 2 IP address subnet, typically only used for point to point links between devices, meaning you can ignore that whole thing about NIDs and Broadcast addresses for a /31, they don't apply! You can still assign those IP's to interfaces, but remember, you only have two total. The benefit of this is a /30 would consume two additional IP's, but they would be unusable. Think of this as a way to conserve IP space with point to point links. Be wary though, some manufacturers still do not support this, so check your vendor documentation before using!
 
+### c
+
+There are smaller subnets in IPv6 than a /64, but it doesn't conform to IPv6 standards. Typically vendor gear will not support this operation, and [RFC5375 Section 3.1](https://datatracker.ietf.org/doc/html/rfc5375#section-3.1) specifically recommends against it
