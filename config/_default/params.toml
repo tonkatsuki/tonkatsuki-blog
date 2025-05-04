@@ -31,6 +31,9 @@ defaultFeaturedImage = "img/featured.png" # used as default for featured images 
 giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
 
+[meta]
+favicon = "favicon.png"
+
 [header]
 layout = "fixed-fill" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
 
