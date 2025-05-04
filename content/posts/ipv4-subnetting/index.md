@@ -14,7 +14,7 @@ Traditional subnetting tutorials will explain network/host bits, etc. Although t
 
 The reason I made this was although the above link is quite good, it doesn't explain a couple other quick hacks for figuring out information on networks.
 
-The main thing to take away is we're doing some simple subtraction, and then working in powers of 2 the whole time: **2<sup>2</sup> = 4, 2<sup>6</sup> = 64, and so forth.**
+The main thing to take away is we're doing some simple subtraction, and then working in powers of two the whole time: **2<sup>2</sup> = 4, 2<sup>6</sup> = 64, and so forth.**
 
 # Examples
 
@@ -107,7 +107,7 @@ So wait, does that mean we only have 4 total IP's? Nope! Remember, we're working
 
 Wait. This might take a while, we have to reach 99 right? Counting 4 at a time seems a little silly. How can we find out the nearest when it's all the way up there, close that 100?
 
-Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well, 25 isn't very useful, is it? We're working in powers of 2, and there's no 2<sup>x</sup>  = 25, is there? However, we could quickly figure out that **100** is divisible by 4, meaning one of our subnets has to be 10.34.100.0/22. Minus 4 from 100, and you're at 96. We got our boundary!
+Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well, 25 isn't very useful, is it? We're working in powers of two, and there's no 2<sup>x</sup>  = 25, is there? However, we could quickly figure out that **100** is divisible by 4, meaning one of our subnets has to be 10.34.100.0/22. Minus 4 from 100, and you're at 96. We got our boundary!
 
 >10.34.92.0/22
 
@@ -115,7 +115,7 @@ Well, we could do simple division: 99/4 = 24.75. Round up and you're at 25. Well
 
 >10.34.100.0/22
 
-But before we move on, I want to teach you a hack about this. Know how we're always doing that thing where we work in powers of 2? If you're not good at basic math or multiplication tables (I certainly stink at it!), you can hack your way through this. Just remember your **powers of two** and you will have to do barely any math at all. Our subnets always need to align with powers of two, right?
+But before we move on, I want to teach you a hack about this. Know how we're always doing that thing where we work in powers of two? If you're not good at basic math or multiplication tables (I certainly stink at it!), you can hack your way through this. Just remember your **powers of two** and you will have to do barely any math at all. Our subnets always need to align with powers of two, right?
 
 >2<sup>1</sup> = 2
 
@@ -129,7 +129,7 @@ And so forth. So we've basically got 2, 4, 8, 16, 32, 64, 128, 256. If we can re
 
 99 is close to that 128 from our 2<sup>7</sup> operation. We could count down by 4's from 128, or we could minus an even smaller power of two to get us closer. How about 32? That puts us right on 10.34.96.0/22! By remembering the powers of two, we need to barely think about division, multiplication, or exponents. Although it's good to know the math, remember, we want to subnet *quick*!
 
-Another great way, if you love tech like me, is also to just think about RAM sizes. RAM usually comes in 1GB, 2GB, 4GB, 8GB, 64GB, 128GB, and so forth. If you remember other ram sizes that aren't directly powers of 2, like 24GB, 96GB, etc, you'll be very quick on your feet.
+Another great way, if you love tech like me, is also to just think about RAM sizes. RAM usually comes in 1GB, 2GB, 4GB, 8GB, 64GB, 128GB, and so forth. If you remember other ram sizes that aren't directly powers of two, like 24GB, 96GB, etc, you'll be very quick on your feet.
 
 Since we got that out of the way, let's figure out one last thing on this tangent, what's our IP range? We're working in 10.34.96.0/22, and the next boundary is 10.34.100.0/22, so...
 
