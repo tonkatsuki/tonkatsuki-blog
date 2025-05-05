@@ -29,7 +29,7 @@ First, let's separate our IPv4 into boundaries.
 | 8 | 16 | 24 | 32 |
 
 
-Each octet corresponds to a number below, 8, 16, 24, and 32. It's no coincidence, if you've learned about subnetting you might've read about the binary behind it all. An IPv4 address is 32 bits. Remember a subnet is determined by how many **network** bits are set. 1 bit is 8 bytes, let's look at this below, so if you were to have your network bits set like this: 
+Each octet corresponds to a number below, 8, 16, 24, and 32. It's no coincidence, if you've learned about subnetting you might've read about the binary behind it all. An IPv4 address is 32 bits. Remember a subnet is determined by how many **network** bits are set. Let's look at this below, so if you were to have your network bits set like this: 
 >11111111 00000000 00000000 00000000
 
 Would be a network that is x.x.x.x/8, or x.x.x.x 255.0.0.0
